@@ -1,0 +1,51 @@
+1. python manage.py shell
+
+2. from examp1.models import *
+
+3. Создание объектов в таблицах:
+   new_product1 = Product.objects.create(id=1, name="New Product 1", price=25.50, stock=50)
+   new_product2 = Product.objects.create(id=2, name="New Product 2", price=20.50, stock=50)
+   new_product3 = Product.objects.create(id=3, name="New Product 3", price=30.50, stock=50)
+   new_product4 = Product.objects.create(id=4, name="New Product 4", price=40.50, stock=50)
+
+   new_customer1 = Customer.objects.create(id=1, first_name="Alexander", last_name="Nevskiy")
+   new_customer2 = Customer.objects.create(id=2, first_name="Bob", last_name="Marley")
+   new_customer3 = Customer.objects.create(id=3, first_name="Leonid", last_name="Kanevskiy")
+   new_customer4 = Customer.objects.create(id=4, first_name="Benedikt", last_name="Kumberbutch")
+ 
+   honey1 = Honey.objects.create(title="Липовый", cost=250.20, amount=130.50, description="вкусный мед")
+   honey2 = Honey.objects.create(title="Гречишный", cost=310.80, amount=130.50, description="вкусный мед")
+   honey3 = Honey.objects.create(title="Цветочный", cost=300.00, amount=130.50, description="вкусный мед")
+   honey4 = Honey.objects.create(title="Донниковый", cost=420.20, amount=130.50, description="вкусный мед")
+
+4. Удаление пой id и названию:
+   product_dl = Product.objects.get(id=1)
+   product_dl.delete()
+
+   customer_dl = Customer.objects.get(id=4)
+   customer_dl.delete()
+
+   honey_dl = Honey.objects.get(title="Цветочный")
+   honey_dl.delete()
+
+5. Получение всех объектов, объекта по id, по параметру.
+   all_products = Product.objects.all(name, price)
+   print(all_products)
+
+   customer_by_id = Customer.objects.get(id=2)
+   print(customer_by_id)
+   
+   honey_by_price = Honey.objects.get(cost=420.2)
+   print(honey_by_price)
+
+4. Подсчет количества объектов: всех, по параметру, по частичному совпадению.
+   expensive_honey_count = len(Honey.objects.filter(cost__gt=260.00))
+   print(expensive_honey_count)
+
+   total_customer = len(Customer.objects.all())
+   print(total_customer)
+
+   products_with_New = len(Product.objects.filter(name__contains='New'))
+   print(products_with_New)
+
+   
